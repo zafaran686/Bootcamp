@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const usersRouter= require('./usersRoutes');
+const adminRouter = require('./adminRoutes');
+const clientRouter= require('./clientRoutes');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Mern STACK Developer' });
-});
-
-module.exports = router;
+module.exports = {
+usersRouter,
+adminRouter,
+clientRouter
+}

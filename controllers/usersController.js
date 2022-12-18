@@ -1,4 +1,3 @@
-const { query } = require('express');
 const{ 
     userModel 
 }=  require('../models');
@@ -8,8 +7,8 @@ const addUser= (body) => {
  const query = { _id: doc._id};
  return userModel.findOneAndUpdate(query, doc ,{
 upsert: true,
-new: true,
-});
+new: true
+}).populate('userType.item');
 };
 
 const updateUser= (body) => {
@@ -19,7 +18,7 @@ const updateUser= (body) => {
    });
    };
 
-const deleteUser = (query) => {
+const deleteUser = (filter) => {
     return userModel.deleteOne(filter);
 };
 

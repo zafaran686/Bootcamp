@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router(); // 
-const {usersController}= require ('../controllers');
+const {clientController}= require ('../controllers');
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   const query = req.query;
   console.log(query);
   try {
-    const result = await usersController.getAllUsers(query);
+    const result = await clientController.getAllClient(query);
     res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error);
@@ -17,7 +17,7 @@ router.get('/', async function(req, res, next) {
 router.post('/', async function(req, res, next) {
   const body = req.body;
   try {
-    const result = await usersController.addUser(body);
+    const result = await clientController.addClient(body);
     res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error);
@@ -29,7 +29,7 @@ router.put('/', async function(req, res, next) {
   if (!body._id)
   return res.status(400).send({message: "_id id require"});
   try {
-    const result = await usersController.updateUser(body);
+    const result = await clientController.updateClient(body);
     res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error);
@@ -40,7 +40,7 @@ router.delete('/:', async function(req, res, next) {
   const id = req.params.id;
   try {
     const filter = {_id:id}; // filter and find 
-    const result = await usersController.deleteUser(filter);
+    const result = await clientController.deleteClient(filter);
     res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error);

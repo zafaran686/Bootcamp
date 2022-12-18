@@ -12,16 +12,16 @@ const usersSchema = new mongoose.Schema({
     userType: {
         kind:
         {
-            typ:String, 
+            type:String, 
             enum:['admin','client']
         },
     item:
         {
          type: mongoose.Types.ObjectId,
-         refPath:'usertype.kind'
+         refPath:'userType.kind'
         }
     }
 }, 
-{collection: 'users'});
+{collection: 'users', versionKey: false });
 
 module.exports= mongoose.model('users', usersSchema);
