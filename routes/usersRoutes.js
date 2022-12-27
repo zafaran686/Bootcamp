@@ -36,7 +36,7 @@ router.put('/', async function(req, res, next) {
   }
 });
 
-router.delete('/:', async function(req, res, next) {
+router.delete('/:id', async function(req, res, next) {
   const id = req.params.id;
   try {
     const filter = {_id:id}; // filter and find 

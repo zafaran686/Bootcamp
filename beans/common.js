@@ -25,11 +25,29 @@ try {
 const userType= body.userType;
 switch(userType){
     case 'admin':
-        //apply admin fields validation here 
+        //apply admin fields validation here
+        if(!body.data.firstName){
+            return Promise.reject({error: "First Name is require"});
+        } 
+        if(!body.data.lastName){
+            return Promise.reject({error: "Last Name is require"});
+        } 
        result = await adminController.addAdmin(body.data);
         break;
     case 'client':
         // appply client fields validation here
+        if(!body.data.firstName){
+            return Promise.reject({error: "First Name is require"});
+        } 
+        if(!body.data.lastName){
+            return Promise.reject({error: "Last Name is require"});
+        } 
+        if(!body.data.age){
+            return Promise.reject({error: "Age is require"});
+        } 
+        if(!body.data.dob){
+            return Promise.reject({error: "DOB is require"});
+        } 
         result= await clientcontroller.addClient(body.data);
         break;
     default:

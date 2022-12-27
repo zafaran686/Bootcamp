@@ -8,9 +8,9 @@ const mongoose = require('mongoose');
 //var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/usersRoutes');
 const {
-  adminRouter,
-  clientRouter,
-  usersRouter
+  adminRoutes,
+  clientRoutes,
+  usersRoutes
 } = require('./routes');
 const authMiddleware = require('./middlewares/authMiddleware');
 
@@ -39,9 +39,9 @@ app.post('/signup', authMiddleware.userSignup);
 
 //test routes
 //app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
-app.use('/client',clientRouter );
+app.use('/users', usersRoutes);
+app.use('/admin', adminRoutes);
+app.use('/client',clientRoutes );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
