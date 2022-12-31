@@ -1,7 +1,7 @@
 const { sign, verify } = require ('jsonwebtoken');
 const { signup }= require('../beans/common');
 const { login } = require('../beans/common');
-const{ usersController} = require('../controllers');
+const{ usersController, adminController, clientcontroller} = require('../controllers');
 
 
 const executeLogin = async(username, password, cb) => {
@@ -13,6 +13,7 @@ const executeLogin = async(username, password, cb) => {
       }  
 
       return cb (null, user);
+      console.log(user)
     } catch (error) {
         return cb(error, false);
     }
@@ -33,7 +34,16 @@ const generateToken = async ( req, res, next) => {
 const respond = async ( req, res, next) => {
     const user = req.user;
 
-    const result ={ token: req.token, user };
+    const userType = user.userType.kind;
+    const item = user.userType.item;
+    let data= null;
+    if (userType === "admin"){
+        data = await adminController.getAdmin({ _id: item});
+    }
+    if (userType === 'client'){
+        data = await clientcontroller.getClient({ _id: item}); 
+    }
+    const result ={ token: req.token, user: user.userType.item };
     res.status(200).send(result);
     
 };
