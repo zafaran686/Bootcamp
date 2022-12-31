@@ -18,7 +18,7 @@ const usersSchema = new mongoose.Schema({
     item:
         {
          type: mongoose.Types.ObjectId,
-         refPath:'userType.kind'
+         ref:'userType.kind'
         }
     }
 }, 
